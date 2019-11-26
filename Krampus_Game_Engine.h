@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Photon.h"
-#include "Player2D.h"
+#include "Character2D.h"
 #include "Scroller.h"
 #include "Timing.h"
 
@@ -21,7 +21,7 @@ class Krampus_Game_Engine
   HWND Window;
   Photon photon;
   Timing timer;
-  Player2D player;
+  Character2D player;
   Scroller scroll;
 
   HBITMAP background_bitmap;

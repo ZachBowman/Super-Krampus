@@ -2,7 +2,7 @@
 
 #include "Krampus_Game_Engine.h"
 #include "Photon.h"
-#include "Player2D.h"
+#include "Character2D.h"
 #include "Scroller.h"
 #include "Timing.h"
 
@@ -24,7 +24,7 @@ void Krampus_Game_Engine::Init (HWND Window)
   player_bitmap = Bitmap (L"Images/test_player.bmp", L"Images/test_player_mask1.bmp");
   background_bitmap = photon.load_bitmap (L"Images/bg_layer3_test.bmp");
 
-  player = Player2D (player_bitmap);// (24, 40);
+  player = Character2D (player_bitmap);// (24, 40);
   player.set_position (100, 100);
 
   scroll = Scroller (screen_width, screen_height, background_bitmap);

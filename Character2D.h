@@ -4,14 +4,14 @@
 #include "Keyboard.h"
 #include "Scroller.h"
 
-class Player2D
+class Character2D
   {
   public:
 
-  Player2D ();
-  Player2D (int player_width, int player_height);
-  Player2D (Bitmap loaded_bitmap);//(LPCWSTR sprite_path);
-  ~Player2D ();
+  Character2D ();
+  Character2D (int player_width, int player_height);
+  Character2D (Bitmap loaded_bitmap);//(LPCWSTR sprite_path);
+  ~Character2D ();
   void Set_Defaults ();
   void Update (Scroller &scroll);
   void Get_Input ();

@@ -152,7 +152,7 @@
     <ClInclude Include="Krampus_Game_Engine.h" />
     <ClInclude Include="Linked_List.h" />
     <ClInclude Include="Photon.h" />
-    <ClInclude Include="Player2D.h" />
+    <ClInclude Include="Character2D.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scroller.h" />
     <ClInclude Include="stdafx.h" />
@@ -166,7 +166,7 @@
     <ClCompile Include="Krampus_Game_Engine.cpp" />
     <ClCompile Include="Main_Window.cpp" />
     <ClCompile Include="Photon.cpp" />
-    <ClCompile Include="Player2D.cpp" />
+    <ClCompile Include="Character2D.cpp" />
     <ClCompile Include="Scroller.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

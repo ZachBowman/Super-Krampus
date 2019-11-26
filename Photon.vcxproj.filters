@@ -27,9 +27,6 @@
     <ClInclude Include="Photon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Player2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Keyboard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -51,15 +48,15 @@
     <ClInclude Include="Linked_List.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Character2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Photon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Keyboard.cpp">
@@ -81,6 +78,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Bitmap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Character2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

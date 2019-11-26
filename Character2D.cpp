@@ -2,22 +2,22 @@
 
 #include "Bitmap.h"
 #include "Keyboard.h"
-#include "Player2D.h"
+#include "Character2D.h"
 #include "Scroller.h"
 
-Player2D::Player2D ()
+Character2D::Character2D ()
   {
   Set_Defaults ();
   }
 
-Player2D::Player2D (int player_width, int player_height)
+Character2D::Character2D (int player_width, int player_height)
   {
   Set_Defaults ();
   width = player_width;
   height = player_height;
   }
 
-Player2D::Player2D (Bitmap loaded_bitmap)//(LPCWSTR sprite_path)
+Character2D::Character2D (Bitmap loaded_bitmap)//(LPCWSTR sprite_path)
   {
   Set_Defaults ();
   //bitmap = Bitmap (sprite_path);
@@ -25,9 +25,9 @@ Player2D::Player2D (Bitmap loaded_bitmap)//(LPCWSTR sprite_path)
   bitmap->get_size (width, height);
   }
 
-Player2D::~Player2D () {}
+Character2D::~Character2D () {}
 
-void Player2D::Set_Defaults ()
+void Character2D::Set_Defaults ()
   {
   x = 150;
   y = 150;
@@ -35,19 +35,19 @@ void Player2D::Set_Defaults ()
   }
 
 // per frame
-void Player2D::Get_Input ()
+void Character2D::Get_Input ()
   {
   keyboard.get_state ();
   }
 
 // per step
-void Player2D::Update (Scroller &scroll)
+void Character2D::Update (Scroller &scroll)
   {
   handle_keyboard (scroll);
   position_rect ();
   }
 
-void Player2D::position_rect ()
+void Character2D::position_rect ()
   {
   render_rect.left = x - width / 2;
   render_rect.right = x + width / 2;
@@ -55,7 +55,7 @@ void Player2D::position_rect ()
   render_rect.bottom = y;
   }
 
-void Player2D::handle_keyboard (Scroller &scroll)
+void Character2D::handle_keyboard (Scroller &scroll)
   {
   if (keyboard.left) move_left (scroll);
   if (keyboard.right) move_right (scroll);
@@ -63,12 +63,12 @@ void Player2D::handle_keyboard (Scroller &scroll)
   if (keyboard.down) move_down (scroll);
   }
 
-bool Player2D::check_for_exit ()
+bool Character2D::check_for_exit ()
   {
   return keyboard.escape;
   }
 
-void Player2D::move_left (Scroller &scroll)
+void Character2D::move_left (Scroller &scroll)
   {
   x -= move_speed;
 
@@ -79,7 +79,7 @@ void Player2D::move_left (Scroller &scroll)
   if (scroll.x + x - (width / 2) < 0) x = width / 2;
   }
 
-void Player2D::move_right (Scroller &scroll)
+void Character2D::move_right (Scroller &scroll)
   {
   x += move_speed;
 
@@ -90,7 +90,7 @@ void Player2D::move_right (Scroller &scroll)
   if (scroll.x + x + (width / 2) > scroll.screen_width) x = scroll.screen_width - (width / 2) - scroll.x;
   }
 
-void Player2D::move_up (Scroller &scroll)
+void Character2D::move_up (Scroller &scroll)
   {
   y -= move_speed;
 
@@ -101,7 +101,7 @@ void Player2D::move_up (Scroller &scroll)
   if (scroll.y + y - height < 0) y = height;
   }
 
-void Player2D::move_down (Scroller &scroll)
+void Character2D::move_down (Scroller &scroll)
   {
   y += move_speed;
 
@@ -112,7 +112,7 @@ void Player2D::move_down (Scroller &scroll)
   if (scroll.y + y > scroll.screen_height) y = scroll.screen_height - scroll.y;
   }
 
-void Player2D::set_position (int X, int Y)
+void Character2D::set_position (int X, int Y)
   {
   x = X;
   y = Y;
