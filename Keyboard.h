@@ -1,4 +1,8 @@
 #pragma once
+
+//#include "Character2D.h"
+#include "Input_State.h"
+
 class Keyboard
   {
   public:
@@ -7,10 +11,12 @@ class Keyboard
   ~Keyboard ();
   void get_state();
 
-  bool left;
-  bool right;
-  bool up;
-  bool down;
+  //Character2D *controlled_character;
+  Input_State current_input, last_input;
 
-  bool escape;
+  //bool left;
+  //bool right;
+  //bool up;
+  //bool down;
+  //bool escape;
   };

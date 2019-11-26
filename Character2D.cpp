@@ -1,8 +1,9 @@
 #include "stdafx.h"
 
 #include "Bitmap.h"
-#include "Keyboard.h"
 #include "Character2D.h"
+#include "Input_State.h"
+#include "Keyboard.h"
 #include "Scroller.h"
 
 Character2D::Character2D ()
@@ -17,10 +18,9 @@ Character2D::Character2D (int player_width, int player_height)
   height = player_height;
   }
 
-Character2D::Character2D (Bitmap loaded_bitmap)//(LPCWSTR sprite_path)
+Character2D::Character2D (Bitmap loaded_bitmap)
   {
   Set_Defaults ();
-  //bitmap = Bitmap (sprite_path);
   bitmap = &loaded_bitmap;
   bitmap->get_size (width, height);
   }
@@ -34,16 +34,9 @@ void Character2D::Set_Defaults ()
   move_speed = 2;
   }
 
-// per frame
-void Character2D::Get_Input ()
+void Character2D::Update (Input_State input, Scroller &scroll)
   {
-  keyboard.get_state ();
-  }
-
-// per step
-void Character2D::Update (Scroller &scroll)
-  {
-  handle_keyboard (scroll);
+  handle_keyboard (input, scroll);
   position_rect ();
   }
 
@@ -55,17 +48,12 @@ void Character2D::position_rect ()
   render_rect.bottom = y;
   }
 
-void Character2D::handle_keyboard (Scroller &scroll)
+void Character2D::handle_keyboard (Input_State input, Scroller &scroll)
   {
-  if (keyboard.left) move_left (scroll);
-  if (keyboard.right) move_right (scroll);
-  if (keyboard.up) move_up (scroll);
-  if (keyboard.down) move_down (scroll);
-  }
-
-bool Character2D::check_for_exit ()
-  {
-  return keyboard.escape;
+  if (input.left) move_left (scroll);
+  if (input.right) move_right (scroll);
+  if (input.up) move_up (scroll);
+  if (input.down) move_down (scroll);
   }
 
 void Character2D::move_left (Scroller &scroll)

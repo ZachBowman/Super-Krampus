@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+#include "Keyboard.h"
 #include "Krampus_Game_Engine.h"
 #include "Photon.h"
 #include "Character2D.h"
@@ -35,13 +36,14 @@ void Krampus_Game_Engine::Main_Loop ()
   timer.Update ();
 
   // execute all functions for frames (unlimited speed)
-  player.Get_Input ();
+  keyboard.get_state ();
+  menu.handle_keyboard (keyboard.current_input);
   Render ();
 
   // execute all functions for steps (limited speed)
   if (timer.is_step_ready ())
     {
-    player.Update (scroll);
+    player.Update (keyboard.current_input, scroll);
     timer.update_step ();
     }
   }
