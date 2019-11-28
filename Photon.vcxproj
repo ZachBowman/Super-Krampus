@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h" />
+    <ClInclude Include="Graphics_Info.h" />
     <ClInclude Include="Input_State.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Krampus_Game_Engine.h" />
@@ -167,6 +168,7 @@
   <ItemGroup>
     <ClCompile Include="Bitmap.cpp" />
     <ClCompile Include="Debug.cpp" />
+    <ClCompile Include="Graphics_Info.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Krampus_Game_Engine.cpp" />
     <ClCompile Include="Main_Window.cpp" />

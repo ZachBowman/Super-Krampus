@@ -3,19 +3,21 @@
 class Scroller
   {
   public:
-    Scroller ();
-    Scroller (int screen_width, int screen_height);
-    Scroller (int screen_width, int screen_height, HBITMAP background);
-    ~Scroller ();
 
-    int x, y;
+  Scroller ();
+  Scroller (int new_game_width, int new_game_height, int scroll_margin);
+  Scroller (int new_game_width, int new_game_height, int scroll_margin, HBITMAP background);
+  ~Scroller ();
 
-    // Min and max offsets for visually scrolling the world.
-    int min_scroll_x, max_scroll_x;
-    int min_scroll_y, max_scroll_y;
+  int x, y;
 
-    int screen_width, screen_height;
+  // Min and max offsets for visually scrolling the world.
+  int min_scroll_x, max_scroll_x;
+  int min_scroll_y, max_scroll_y;
 
-    int margin = 100;
+  // TODO: game world size should not be part of the scroller.  Where should it go?
+  int game_world_width, game_world_height;
+  int game_view_width, game_view_height;
+
+  int margin;
   };
-

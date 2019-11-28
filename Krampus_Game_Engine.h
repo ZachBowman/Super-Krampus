@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Character2D.h"
+#include "Graphics_Info.h"
 #include "Keyboard.h"
 #include "Menu.h"
 #include "Photon.h"
@@ -14,7 +15,7 @@ class Krampus_Game_Engine
   Krampus_Game_Engine ();
   Krampus_Game_Engine (int screen_width, int screen_height);
   ~Krampus_Game_Engine ();
-  void Init (HWND Window);
+  void Init (HWND Window, Graphics_Info graphics);
   void Main_Loop ();
   void Render ();
 
@@ -28,6 +29,7 @@ class Krampus_Game_Engine
   Character2D player;
   Scroller scroll;
   Keyboard keyboard;
+  Graphics_Info graphics;
 
   HBITMAP background_bitmap;
   Bitmap player_bitmap;

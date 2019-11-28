@@ -8,6 +8,7 @@ Bitmap::Bitmap (LPCWSTR sprite_path)
   {
   sprite = (HBITMAP) LoadImage (NULL, sprite_path, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
   assert (sprite != NULL);
+  get_size (sprite, sprite_width, sprite_height);
   }
 
 Bitmap::Bitmap (LPCWSTR sprite_path, LPCWSTR mask_path)
@@ -18,12 +19,19 @@ Bitmap::Bitmap (LPCWSTR sprite_path, LPCWSTR mask_path)
   assert (sprite != NULL);
   assert (mask != NULL);
 
+  int mask_width, mask_height;
+  get_size (sprite, sprite_width, sprite_height);
+  get_size (mask, mask_width, mask_height);
+
+  assert (sprite_width == mask_width);
+  assert (sprite_height == mask_height);
+
   is_transparent = true;
   }
 
 Bitmap::~Bitmap () {}
 
-void Bitmap::render (HDC temp_hdc, HDC dest_hdc, int source_x, int source_y, int dest_x, int dest_y)
+void Bitmap::render (HDC temp_hdc, HDC dest_hdc, int dest_x, int dest_y)
   {
   BITMAP temp_bitmap;
   GetObject (sprite, sizeof (temp_bitmap), &temp_bitmap);
@@ -35,10 +43,34 @@ void Bitmap::render (HDC temp_hdc, HDC dest_hdc, int source_x, int source_y, int
   BitBlt (dest_hdc, dest_x, dest_y, temp_bitmap.bmWidth, temp_bitmap.bmHeight, temp_hdc, 0, 0, SRCINVERT);
   }
 
-void Bitmap::get_size (int &width, int &height)
+void Bitmap::render (HDC temp_hdc, HDC dest_hdc, int dest_x, int dest_y, float scale)
   {
   BITMAP temp_bitmap;
   GetObject (sprite, sizeof (temp_bitmap), &temp_bitmap);
+  SelectObject (temp_hdc, sprite);
+  StretchBlt (dest_hdc, dest_x * scale, dest_y * scale, temp_bitmap.bmWidth * scale, temp_bitmap.bmHeight * scale, temp_hdc, 0, 0, temp_bitmap.bmWidth, temp_bitmap.bmHeight, SRCINVERT);
+  SelectObject (temp_hdc, mask);
+  StretchBlt (dest_hdc, dest_x * scale, dest_y * scale, temp_bitmap.bmWidth * scale, temp_bitmap.bmHeight * scale, temp_hdc, 0, 0, temp_bitmap.bmWidth, temp_bitmap.bmHeight, SRCAND);
+  SelectObject (temp_hdc, sprite);
+  StretchBlt (dest_hdc, dest_x * scale, dest_y * scale, temp_bitmap.bmWidth * scale, temp_bitmap.bmHeight * scale, temp_hdc, 0, 0, temp_bitmap.bmWidth, temp_bitmap.bmHeight, SRCINVERT);
+  }
+
+void Bitmap::render (HDC temp_hdc, HDC dest_hdc, int source_x, int source_y, int width, int height, int dest_x, int dest_y, float scale)
+  {
+  BITMAP temp_bitmap;
+  GetObject (sprite, sizeof (temp_bitmap), &temp_bitmap);
+  SelectObject (temp_hdc, sprite);
+  StretchBlt (dest_hdc, dest_x * scale, dest_y * scale, width * scale, height * scale, temp_hdc, source_x, source_y, width, height, SRCINVERT);
+  SelectObject (temp_hdc, mask);
+  StretchBlt (dest_hdc, dest_x * scale, dest_y * scale, width * scale, height * scale, temp_hdc, source_x, source_y, width, height, SRCAND);
+  SelectObject (temp_hdc, sprite);
+  StretchBlt (dest_hdc, dest_x * scale, dest_y * scale, width * scale, height * scale, temp_hdc, source_x, source_y, width, height, SRCINVERT);
+  }
+
+void Bitmap::get_size (HBITMAP hbitmap, int &width, int &height)
+  {
+  BITMAP temp_bitmap;
+  GetObject (hbitmap, sizeof (temp_bitmap), &temp_bitmap);
   width = temp_bitmap.bmWidth;
   height = temp_bitmap.bmHeight;
   }
