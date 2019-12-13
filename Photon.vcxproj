@@ -149,6 +149,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Character_Controller.h" />
+    <ClInclude Include="Character_Input_System.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Graphics_Info.h" />
     <ClInclude Include="Input_State.h" />
@@ -167,6 +169,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bitmap.cpp" />
+    <ClCompile Include="Character_Controller.cpp" />
+    <ClCompile Include="Character_Input_System.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Graphics_Info.cpp" />
     <ClCompile Include="Keyboard.cpp" />

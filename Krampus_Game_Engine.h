@@ -1,8 +1,11 @@
 #pragma once
 
 #include "Character2D.h"
+#include "Character_Controller.h"
+#include "Character_Input_System.h"
 #include "Graphics_Info.h"
 #include "Keyboard.h"
+#include "Linked_List.h"
 #include "Menu.h"
 #include "Photon.h"
 #include "Scroller.h"
@@ -26,13 +29,18 @@ class Krampus_Game_Engine
   HWND Window;
   Photon photon;
   Timing timer;
-  Character2D player;
+
+  Linked_List<Character2D> characters;
+  Character_Controller character_controller;
+  Character_Input_System character_input_system;
+
   Scroller scroll;
   Keyboard keyboard;
   Graphics_Info graphics;
 
   HBITMAP background_bitmap;
   Bitmap player_bitmap;
+  Bitmap badguy_test_bitmap;
 
   int screen_width, screen_height;
   };

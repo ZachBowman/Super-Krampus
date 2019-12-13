@@ -60,6 +60,12 @@
     <ClInclude Include="Graphics_Info.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Character_Controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Character_Input_System.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -96,6 +102,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Graphics_Info.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Character_Controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Character_Input_System.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

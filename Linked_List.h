@@ -3,31 +3,31 @@
 template <typename T>
 class List_Node
   {
-    public:
+  public:
 
-    T data;
-    List_Node *next;
-    List_Node *previous;
+  T data;
+  List_Node *next;
+  List_Node *previous;
   };
 
 template <typename T>
 class Linked_List
   {
-    public:
+  public:
 
-    Linked_List ();
-    Linked_List (int Max);
-    ~Linked_List ();
-    List_Node<T> add ();
-    void add (T Data);
-    void set_data (int index, T Data);
-    T get_data (int index);
+  Linked_List ();
+  Linked_List (int Max);
+  ~Linked_List ();
+  List_Node<T> add ();
+  void add (T Data);
+  void set_data (int index, T Data);
+  T & get_data (int index);
 
-    int count = 0;
+  int count = 0;
 
-    private:
+  private:
 
-    List_Node<T> *head, *tail;
+  List_Node<T> *head, *tail;
   };
 
 template <typename T>
@@ -47,7 +47,6 @@ Linked_List<T>::Linked_List (int Count)
   for (int i = 0; i < count; i += 1)
     {
     node = new List_Node;
-    //node->data = i;
 
     if (i == 0)
       {
@@ -90,14 +89,29 @@ List_Node<T> Linked_List<T>::add ()
 template <typename T>
 void Linked_List<T>::add (T Data)
   {
-  List_Node<T> node = add ();
-  node.data = Data;
+  //List_Node<T> node = add ();
+
+  List_Node<T> *node = new List_Node<T>;
+  if (count == 0)
+    {
+    head = node;
+    }
+  else
+    {
+    tail->next = node;
+    node->previous = tail;
+    }
+
+  tail = node;
+  count += 1;
+
+  node->data = Data;
   }
 
 template <typename T>
 void Linked_List<T>::set_data (int index, T Data)
   {
-  List_Node *node = head;
+  List_Node<T> *node = head;
 
   for (int i = 0; i < index; i += 1)
     {
@@ -108,7 +122,7 @@ void Linked_List<T>::set_data (int index, T Data)
   }
 
 template <typename T>
-T Linked_List<T>::get_data (int index)
+T & Linked_List<T>::get_data (int index)
   {
   List_Node<T> *node = head;
 
