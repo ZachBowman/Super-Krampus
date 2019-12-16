@@ -47,9 +47,8 @@ void Character2D::Set_Defaults ()
   spritesheet = false;
   }
 
-void Character2D::Update (Input_State input, Scroller &scroll)
+void Character2D::Update ()
   {
-  //if (controllable) handle_keyboard (input, scroll);
   position_rect ();
   }
 
@@ -60,10 +59,6 @@ void Character2D::position_rect ()
   render_rect.top = y - height;
   render_rect.bottom = y;
   }
-
-//void Character2D::handle_keyboard (Input_State input, Scroller &scroll)
-//  {
-//  }
 
 void Character2D::set_position (int X, int Y)
   {

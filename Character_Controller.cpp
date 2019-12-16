@@ -2,7 +2,8 @@
 
 #include "Character2D.h"
 #include "Character_Controller.h"
-#include "Character_Input_System.h"
+#include "Character_Input_Component.h"
+//#include "Character_Input_System.h"
 #include "Graphics_Info.h"
 #include "Input_State.h"
 #include "Keyboard.h"
@@ -16,9 +17,14 @@ Character_Controller::~Character_Controller () {}
 
 void Character_Controller::add (int x, int y, Bitmap &loaded_bitmap, bool Controllable)
   {
-  Character2D character (next_id, loaded_bitmap, true);
+  Character2D character (next_id, loaded_bitmap, Controllable);
   character.set_position (x, y);
   characters.add (character);
+  if (Controllable)
+    {
+    Character_Input_Component input (next_id);
+    input_components.add (input);
+    }
   next_id += 1;
   }
 
@@ -27,22 +33,24 @@ void Character_Controller::add (int x, int y, Bitmap &loaded_bitmap, int width, 
   Character2D character (next_id, loaded_bitmap, width, height, Controllable);
   character.set_position (x, y);
   characters.add (character);
+  if (Controllable)
+    {
+    Character_Input_Component input (next_id);
+    input_components.add (input);
+    }
   next_id += 1;
   }
 
-void Character_Controller::Update (Input_State input, Scroller &scroll)
+void Character_Controller::Update ()
   {
   // TODO: remove this eventually
   Character2D character;
   for (int c = 0; c < characters.count; c += 1)
     {
     character = characters.get_data (c);
-    character.Update (input, scroll);
+    character.Update ();
     characters.set_data (c, character);
     }
-
-  // TODO: add systems here
-  input_system.Update_All (characters, scroll);
   }
 
 void Character_Controller::Render (Photon photon, Scroller scroll, Graphics_Info graphics)
@@ -58,4 +66,16 @@ void Character_Controller::Render (Photon photon, Scroller scroll, Graphics_Info
 void Character_Controller::create_components ()
   {
   // TODO: do I need this?
+  }
+
+// Return the input component with matching id
+Character_Input_Component & Character_Controller::get_input_component (int id)
+  {
+  Character_Input_Component input;
+  for (int i = 0; i < input_components.count; i += 1)
+    {
+    input = input_components.get_data (i);
+    if (input.character_id == id) return input;
+    }
+  //return NULL;
   }

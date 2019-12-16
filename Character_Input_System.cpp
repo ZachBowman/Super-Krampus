@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+// TODO: resolve circular dependency by moving input system out of controller to game engine first
+//#include "Character_Controller.h"
 #include "Character_Input_System.h"
 #include "Character2D.h"
 #include "Keyboard.h"
@@ -10,18 +12,24 @@ Character_Input_System::Character_Input_System () {}
 
 Character_Input_System::~Character_Input_System () {}
 
-void Character_Input_System::Update_All (Linked_List<Character2D> &characters, Scroller &scroll)
+void Character_Input_System::Update (Linked_List<Character2D> & characters, Scroller & scroll)//, Character_Controller & controller)
   {
   keyboard.get_state ();
-  Input_State input = keyboard.current_input;
+  Input_State input_state = keyboard.current_input;
 
   for (int c = 0; c < characters.count; c += 1)
     {
-    Character2D &character = characters.get_data (c);
+    Character2D & character = characters.get_data (c);
+
+    // TODO: check for an input component with matching id
+    //Character_Input_Component input_comp = controller.get_input_component (character.id);
+    //if (input_comp != NULL)
+    //  {
+    //  }
 
     if (character.controllable)
       {
-      update_character (character, input, scroll);
+      update_character (character, input_state, scroll);
       }
     }
   }

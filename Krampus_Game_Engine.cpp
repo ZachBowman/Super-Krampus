@@ -48,14 +48,8 @@ void Krampus_Game_Engine::Main_Loop ()
   // execute all functions for steps (limited speed)
   if (timer.is_step_ready ())
     {
-    Character2D character;
-    for (int c = 0; c < characters.count; c += 1)
-      {
-      character = characters.get_data (c);
-      character.Update (keyboard.current_input, scroll);
-      characters.set_data (c, character);
-      }
-    character_controller.Update (keyboard.current_input, scroll);
+    character_controller.Update ();
+    Update_Character_Systems ();
 
     timer.update_step ();
     }
@@ -64,16 +58,12 @@ void Krampus_Game_Engine::Main_Loop ()
 void Krampus_Game_Engine::Render ()
   {
   photon.draw_bitmap (background_bitmap, photon.hdc_frame_buffer, scroll.x, scroll.y, graphics.pixel_scale);
-  
-  Character2D character;
-  for (int c = 0; c < characters.count; c += 1)
-    {
-    character = characters.get_data (c);
-    character.bitmap->render (photon.hdc_temp, photon.hdc_frame_buffer, 1, 1, character.width, character.height, scroll.x + character.render_rect.left, scroll.y + character.render_rect.top, graphics.pixel_scale);
-    }
   character_controller.Render (photon, scroll, graphics);
-
   photon.draw_debug (photon.hdc_frame_buffer, timer);
-
   photon.Finish_Frame ();
+  }
+
+void Krampus_Game_Engine::Update_Character_Systems ()
+  {
+  character_input_system.Update (character_controller.characters, scroll);
   }

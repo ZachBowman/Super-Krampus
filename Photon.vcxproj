@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Character_Controller.h" />
+    <ClInclude Include="Character_Input_Component.h" />
     <ClInclude Include="Character_Input_System.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Graphics_Info.h" />
@@ -170,6 +171,7 @@
   <ItemGroup>
     <ClCompile Include="Bitmap.cpp" />
     <ClCompile Include="Character_Controller.cpp" />
+    <ClCompile Include="Character_Input_Component.cpp" />
     <ClCompile Include="Character_Input_System.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Graphics_Info.cpp" />

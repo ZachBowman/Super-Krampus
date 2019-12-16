@@ -15,7 +15,7 @@ class Character2D
   Character2D (int ID, Bitmap &loaded_bitmap, int character_width, int character_height, bool Controllable);
   ~Character2D ();
   void Set_Defaults ();
-  void Update (Input_State input, Scroller &scroll);
+  void Update ();
   void set_position (int X, int Y);
 
   int id;

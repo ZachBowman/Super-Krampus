@@ -21,6 +21,7 @@ class Krampus_Game_Engine
   void Init (HWND Window, Graphics_Info graphics);
   void Main_Loop ();
   void Render ();
+  void Update_Character_Systems ();
 
   Menu menu;
     
@@ -30,7 +31,7 @@ class Krampus_Game_Engine
   Photon photon;
   Timing timer;
 
-  Linked_List<Character2D> characters;
+  //Linked_List<Character2D> characters;
   Character_Controller character_controller;
   Character_Input_System character_input_system;
 
